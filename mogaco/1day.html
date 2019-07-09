@@ -35,7 +35,38 @@
 		<script src="js/vendor/html5shiv.min.js"></script>
 		<script src="js/vendor/respond.min.js"></script>
 	<![endif]-->
+<style>
+#content p {
+    color: #2f4f4f;
+}
 
+table.code {
+    border-collapse: collapse;
+    text-align: left;
+    line-height: 1.5;
+    border-top: 1px solid #ccc;
+    border-left: 3px solid #369;
+  margin : 20px 10px;
+}
+table.code th {
+    width: 350px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    color: #153d73;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+
+}
+table.code td {
+    width: 500px;
+    padding: 10px;
+    vertical-align: top;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    color: black;
+}
+</style>
 </head>
 <body class="left-menu">
 
@@ -123,7 +154,7 @@
             <div class="vertical-header-wrapper">
                 <nav class="nav-menu">
                     <div class="logo">
-                        <a href="index.html"><img src="rock.png" alt=""></a>
+                        <a href="index.html"><img src="upload/rock.png" alt=""></a>
                     </div><!-- end logo -->
 
                     <div class="margin-block"></div>
@@ -278,14 +309,62 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-7 col-md-12">
-                        <div class="text-widget">
+                        <div class="text-widget" id="content">
                             <h3>오늘의 목표</h3> <h4>모각코 기간동안 학습한 내용을 포스팅할 블로그를 구성해보자.</h4>
-                            <p style="color: #2f4f4f">Git Bash를 활용하여 블로그를 업로드하기로 결정했다.</p>
-                            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                            <img src="git_bash.png" width="400px" height="300px">
-                            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                            <img src="https://gitforwindows.org/img/gwindows_logo.png" width="300px" height="300px">
-
+                            <p>Git Bash를 활용하여 블로그를 업로드하기로 결정했다.</p>
+                            <img src="upload/git_bash.png" width="40%">
+                            <p>온라인 상에 제공되는 html/css 테마를 다운받아 블로그 테마로 설정한다. <a style="color: red" href="https://www.free-css.com/free-css-templates/page240/genius">#Genius</a>
+                            <br>일단 Git Blog 형성을 위해 Git Bash로 아래의 명령어로 초기 설정을 한다.<br></p>
+                            <table class="code">
+                                <tr>
+                                    <th scope="row">명령어</th>
+                                    <td>설명</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">$ git init</th>
+                                    <td>현재 디렉토리를 로컬 저장소로 설정한다. 즉, workspace를 지정한다.</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">$ git remote add origin "git저장소 주소"</th>
+                                    <td>로컬 저장소와 Git 원격 저장소를 연결한다.</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">$ git remote -v</th>
+                                    <td>현재 연결 상태를 확인한다.</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">$ git status</th>
+                                    <td>현재 git 저장 상태를 확인한다.</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">$ git add "파일명" <font color="red">or</font> $ git add .</th>
+                                    <td>수정한 파일/모든 파일을 확인한다.</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">$ git commit -m "comment"</th>
+                                    <td>확인한 수정 내역을 git 저장소에 commit하고 comment를 입력한다.</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">$ git log</th>
+                                    <td>현재 상태의 log를 확인한다.</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">$ git push</th>
+                                    <td>최종적으로 git 저장소를 변경한다.</td>
+                                </tr>
+                            </table>
+                            <p>위의 명령어 외에도 많은 명령어가 있지만 일단 숙지하자.</p>
+                            <br>
+                            <img src="upload/rock.png" width="10%">
+                            <p>일단 짱돌이라는 별명에 걸맞게 꼬마돌로 이미지를 변경하자!! ^_^
+                            <br><br>제작자의 html theme를 입맛대로 바꾸기 위해 코드를 살펴본다. &nbsp&nbspwith &nbsp<a style="color: green" href="https://atom.io/">#ATOM editer</a></p>
+                            <img src="upload/code.png" width="70%">
+                            <br><br><p>ATOM editer를 사용하여 html 코드를 수정하고, 경로를 지정하여 블로그 포스팅을 시작한다.</p>
+                            <img src="upload/post1.png" width="75%">
+                            <br><br><hr><br>
+                            <h2><strong>느낀점</strong></h2>
+                            <p>시스템을 공부하기에 앞서 Git Blog를 처음 작성해보는게 첫 관문이였다. 특히, html과 css를 다뤄본 적이 없는 나에겐 문장 하나하나 쓰는 것이 어려워서 모각코원들의 도움을 많이 받았다.
+                                1일차인 지금은 한 페이지도 포스팅을 간신히 했지만 앞으로 모각코 기간동안 숙지하면서 모각코 외의 여러 활동과 시스템 공부도 포스팅하는게 큰 목표이다.</p>
                         </div>
                     </div>
                 </div>
