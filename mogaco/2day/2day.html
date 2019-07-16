@@ -311,57 +311,74 @@ table.code td {
                 <div class="row">
                     <div class="col-lg-7 col-md-12">
                         <div class="text-widget" id="content">
-                            <h3>오늘의 목표</h3> <h4>모각코 기간동안 학습한 내용을 포스팅할 블로그를 구성해보자.</h4>
-                            <p>Git Bash를 활용하여 블로그를 업로드하기로 결정했다.</p>
-                            <img src="git_bash.png" width="40%">
-                            <p>온라인 상에 제공되는 html/css 테마를 다운받아 블로그 테마로 설정한다. <a style="color: red" href="https://www.free-css.com/free-css-templates/page240/genius">#Genius</a>
-                            <br>일단 Git Blog 형성을 위해 Git Bash로 아래의 명령어로 초기 설정을 한다.<br></p>
-                            <table class="code">
-                                <tr>
-                                    <th scope="row">명령어</th>
-                                    <td>설명</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">$ git init</th>
-                                    <td>현재 디렉토리를 로컬 저장소로 설정한다. 즉, workspace를 지정한다.</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">$ git remote add origin "git저장소 주소"</th>
-                                    <td>로컬 저장소와 Git 원격 저장소를 연결한다.</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">$ git remote -v</th>
-                                    <td>현재 연결 상태를 확인한다.</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">$ git status</th>
-                                    <td>현재 git 저장 상태를 확인한다.</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">$ git add "파일명" <font color="red">or</font> $ git add .</th>
-                                    <td>수정한 파일/모든 파일을 확인한다.</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">$ git commit -m "comment"</th>
-                                    <td>확인한 수정 내역을 git 저장소에 commit하고 comment를 입력한다.</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">$ git log</th>
-                                    <td>현재 상태의 log를 확인한다.</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">$ git push</th>
-                                    <td>최종적으로 git 저장소를 변경한다.</td>
-                                </tr>
-                            </table>
-                            <p>위의 명령어 외에도 많은 명령어가 있지만 일단 숙지하자.</p>
-                            <br>
-                            <img src="rock.png" width="10%">
-                            <p>일단 짱돌이라는 별명에 걸맞게 꼬마돌로 이미지를 변경하자!! ^_^
-                            <br><br>제작자의 html theme를 입맛대로 바꾸기 위해 코드를 살펴본다. &nbsp&nbspwith &nbsp<a style="color: green" href="https://atom.io/">#ATOM editer</a></p>
-                            <img src="code.png" width="70%">
-                            <br><br><p>ATOM editer를 사용하여 html 코드를 수정하고, 경로를 지정하여 블로그 포스팅을 시작한다.</p>
-                            <img src="post1.png" width="75%">
+                            <h3>오늘의 목표</h3> <h4>메모리 구조와 레지스터를 파악해보자.</h4>
+                            <img src="memory.png" width="30%">
+                            <p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&lt; Intel &nbsp8086&nbsp 메모리 구조 ></p>
+                            <p>시스템은 초기화 되면 커널을 메모리에 적재시키고 가용 메모리 영역을 확인한다.
+                            <br>32bit 시스템에서는 CPU가 한번에 처리 가능한 데이터가 32bit이다.
+                            <br>즉, 주소 할당 범위가 0 ~ 2<sup>32</sup> - 1 이다.
+                            <br><br>여기서 이제 알아야 하는 것은 하나의 프로그램 즉, 하나의 프로세스가 실행되기 위한 메모리 구조이다.
+                            <br>운영체제는 하나의 프로세스를 segment 단위로 묶어 가용 메모리 영역에 저장한다.</p>
+                            <img src="segment.png" width="40%">
+                            <p>하나의 segment 는 위의 그림처럼 code segment, data segment, stack segment 로 이루어져 있다.
+                            <br>그리고 하나의 segment 는 최대 2<sup>32</sup> byte의 크기를 가질 수 있다.
+                            <br></p>
+                            <ul style="color: black">
+                                <li><b>Code segment</b>&nbsp&nbsp:
+                                    <br>메모리 상의 특정 위치에 시스템이 알아듣는 명령어(instruction)를 저장한다.
+                                    <br>기계어 코드로 컴파일러가 만든 코드이다.
+                                    <br># 하지만 segment 는 자신의 physical address 를 모른다. 이 때, logical address 를 사용한다.
+                                    <br>&nbsp&nbsp&nbsp&nbsp
+                                    segment selector 가 시작 위치 offset 을 찾고 그 위치부터 logical address 를 결정한다.
+                                    <br>&nbsp&nbsp&nbsp&nbsp
+                                    즉, &nbspphysical address &nbsp= &nbspoffset &nbsp+ &nbsplogical address 이다.<br><br>ex)</li>
+                                    <img src="example.png">
+                                    <p style="color: black">예를 들어 위에 메모리 상에선 segment 의 offset 은 0x80010000 (physical address) 이고, IS 1 은 0x00000100 (logical address) 이므로
+                                    <br>IS 1 의 physical address 는 0x80010000 &nbsp+ &nbsp0x00000100 &nbsp= &nbsp0x80010100 이다.</p>
+                                <li><b>Data segment</b>&nbsp&nbsp:
+                                    <br>프로그램 실행 시 사용되는 데이터(전역 변수)를 저장한다. 이 segment 는 다시 네 개로 나뉜다.
+                                    <br>현재 모듈의 data segment, 상위 레벨부터 오는 데이터 모듈, 동적 생성 데이터, 다른 프로그램과 공유하는 데이터로 나뉜다.</li>
+                                <br><li><b>Stack segment</b>&nbsp&nbsp:
+                                    <br>LIFO(Last-In, First-Out) 방식으로 데이터를 명령어 PUSH 로 저장하고, POP 으로 사용한다.
+                                    <br>현재 수행되는 handler, task, program 이 저장하고, 지역 변수가 저장되는 영역이다.
+                                    <br>우리가 사용하는 buffer 가 이 영역에 저장된다. 또, multiple 스택 생성과 스택 간 switch 가 가능하다.
+                                    <br>필요 크기만큼 생성되고 프로세스 명령에 의해 데이터를 저장한다.
+                                    <br>SP(Stack Pointer) 레지스터가 스택 꼭대기를 가리킨다.</li>
+                            </ul>
+                            <br><hr><br>
+                            <h4>레지스터 &nbsp:&nbsp CPU 내부 메모리</h4>
+                            <ul style="color: black">
+                                <li><b>범용 레지스터</b>&nbsp&nbsp:
+                                <br>논리/수리 연산에 사용되는 피연산자, 주소 계산에 사용되는 피연산자, 메모리 포인터가 저장되는 레지스터이다.
+                                <br>임의로 조작이 가능하며 4개의 32bit 변수처럼 사용된다. &nbsp또한, 때에 따라 다른 용도로 사용 가능하다.</li>
+                                <img src="gp_register.png">
+                                <p style="color: black">EAX - 피연산자와 연산 결과 저장소
+                                <br>EBX - DS segment &nbsp안에 데이터를 가리키는 포인터
+                                <br>ECX - 문자열 처리나 루프를 위한 카운터
+                                <br>EDX - I/O 포인터
+                                <br>ESI - DS 레지스터가 가리키는 data segment &nbsp내의 어느 데이터를 가리키는 포인터, 문자열 처리에서 source 를 가리킴.
+                                <br>EDI - ES 레지스터가 가리키는 data segment &nbsp내의 어느 데이터를 가리키는 포인터, 문자열 처리에서 destination 을 가리킴.
+                                <br>ESP - SS 레지스터가 가리키는 stack segment 의 맨 꼭대기를 가리키는 포인터
+                                <br>EBP - SS 레지스터가 가리키는 stack segment 의 한 데이터를 가리키는 포인터</p>
+                                <br><li><b>세그먼트 레지스터</b>&nbsp&nbsp:
+                                <br>각각 code/data/stack &nbspsegment 를 가리키는 주소가 들어있는 레지스터이다.
+                                <br>원하는 segment &nbsp안의 특정 데이터, 명령어를 정확하게 끄집어 낼 수 있다.</li>
+                                <img src="sg_register.png" width="17%">
+                                <p style="color: black">CS - code segment 를 가리키는 레지스터
+                                <br>DS, ES, FS, GS - data segment 를 가리키는 레지스터
+                                <br>SS - stack segment 를 가리키는 레지스터</p>
+                                <br><li><b>플래그 레지스터</b>&nbsp&nbsp:
+                                <br>프로그램의 현재 상태나 조건 등을 검사하는 플래그가 있는 레지스터이다.
+                                <br>상태, 컨트롤, 시스템 플래그의 집합이다. 시스템이 초기화 되면 이 레지스터는 0x00000002 값을 가진다.</li>
+                                <img src="fg_register.png">
+                                <p style="color: black">1, 3, 5, 15, 22~31 번 비트는 예약되어 있어서 조작할 수 없다.</p>
+                                <ul>
+                                    <li>status flags</li>
+                                    <li>system flags</li>
+                                </ul>
+                                <br><li><b>인스트럭션 포인터</b>&nbsp&nbsp:
+                                <br>다음 수행해야 하는 명령의 메모리 상 주소가 있는 레지스터이다.</li>
+                            </ul>
                             <br><br><hr><br>
                             <h2><strong>느낀점</strong></h2>
                             <p>시스템을 공부하기에 앞서 Git Blog를 처음 작성해보는게 첫 관문이였다. 특히, html과 css를 다뤄본 적이 없는 나에겐 문장 하나하나 쓰는 것이 어려워서 모각코원들의 도움을 많이 받았다.
